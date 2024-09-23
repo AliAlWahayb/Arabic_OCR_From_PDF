@@ -129,7 +129,7 @@ def split_and_process_pdf(pdf_file_path):
 
 
 # Set the path to your input PDF file
-pdf_file_path = 'PDF/المقامر رواية لـ دوستويفسكي_DONE.pdf'
+pdf_file_path = 'PDF/المقامر رواية لـ دوستويفسكي-7-9_DONE_DONE.pdf'
 
 pdf_file_name = os.path.basename(pdf_file_path)
 

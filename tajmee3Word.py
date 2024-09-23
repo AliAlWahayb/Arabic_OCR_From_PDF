@@ -1,14 +1,13 @@
 import os
-
+from docx import Document
+import re
 # Path to the folder containing the text files
-folder_path = "output/المقامر رواية لـ دوستويفسكي_Image"
+folder_path = "output/المقامر رواية لـ دوستويفسكي_PDF"
 
 # Output file where the combined content will be saved
-output_file = f"{folder_path}/!combined_files.txt"
+output_file = f"{folder_path}/!combined_files.docx"
 
-
-import os
-import re
+doc = Document()
 
 # Function to combine text files based on name order
 def combine_text_files(folder_path, output_file):
@@ -19,9 +18,11 @@ def combine_text_files(folder_path, output_file):
             with open(os.path.join(folder_path, file_name), "r", encoding="utf-8") as infile:
                 Page_number = re.findall(r'\d+', file_name)
                 Page_number = ''.join(Page_number)
-                outfile.write(f"Page#{Page_number}\n")
-                outfile.write(infile.read())
-                outfile.write("\n")
+                doc.add_paragraph(f"Page#{Page_number}\n")
+                doc.add_paragraph(infile.read())
+                doc.add_paragraph("\n")
+
+        doc.save(output_file)
 
 # Example usage
 combine_text_files(folder_path, output_file)

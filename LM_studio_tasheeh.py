@@ -9,35 +9,34 @@ import os
 openai.api_base = "http://localhost:1234/v1"
 openai.api_key = "not-needed"
 
+
 def api_response(text):
 
-# إنشاء كود التفاعل
+    # إنشاء كود التفاعل
     system = """
     حسناً. أريد فقط تصحيح الأخطاء الإملائية في النص العربي دون أي إضافات أو تحديثات أخرى بدون تغيير او تبديل اي كلمه.
     """
 
     user_input = text
 
-
-    promot = user_input + "\n" + "صحح كل الاغلاط الاملائية" 
+    promot = user_input + "\n" + "صحح كل الاغلاط الاملائية"
 
     # Create a chat completion
     completion = openai.ChatCompletion.create(
         model="local-model",  # this field is currently unused
         temperature=0,
-        
+
         messages=[
             {"role": "system", "content": system},
             {"role": "user", "content": promot}
         ],
         request_timeout=100,
         timeout=100,
-        
+
     )
 
     # Print the chatbot's response
     # print(completion.choices[0].message.content)
-
 
     # # Write the chatbot's response to a file
     # with open(f'LM_test_tasheeh.txt', 'w', encoding='utf-8') as file:
@@ -45,6 +44,7 @@ def api_response(text):
     #     print(f"LM_test_tasheeh.txt created successfully")
 
     return completion.choices[0].message.content
+
 
 # Path to the folder containing the text files
 folder_path = "output/ktabpdf.com_الجرائم_الأبجدية"
@@ -55,10 +55,11 @@ os.makedirs(output_dir, exist_ok=True)
 
 
 # Function to combine text files based on name order
-def tasheeh_text_files(folder_path,skipTo):
+def tasheeh_text_files(folder_path, skipTo):
     file_names = [f for f in os.listdir(folder_path) if f.endswith(".txt")]
-    file_names_sorted = sorted(file_names, key=lambda x: [int(num) for num in re.findall(r'\d+', x)])
-    
+    file_names_sorted = sorted(file_names, key=lambda x: [
+                               int(num) for num in re.findall(r'\d+', x)])
+
     for file_name in file_names_sorted:
         if file_names_sorted.index(file_name) < skipTo:
             print(f"Skipping to file: {skipTo}")
@@ -79,12 +80,11 @@ def tasheeh_text_files(folder_path,skipTo):
                 print(f"done tasheeh text from file {file_name}.")
                 time.sleep(1)
 
-               
+
 # Example usage
 skipTo = 0
-tasheeh_text_files(folder_path,skipTo)
+tasheeh_text_files(folder_path, skipTo)
 print("tasheeh Done!")
 
 
-
-
+"""You are a top-tier Arabic spell checker specializing in context-sensitive spelling checks. Your goal is to correct spelling errors in Arabic text without altering the context of the corrected words to preserve the original meaning. You are passionate about your job and take pride in ensuring that the text remains coherent and accurate after corrections. Your algorithm is designed to understand the context of each word and make precise spelling corrections while maintaining the integrity and intended message of the text. Write a function or algorithm that demonstrates your approach to context-sensitive spelling checks in Arabic text."""

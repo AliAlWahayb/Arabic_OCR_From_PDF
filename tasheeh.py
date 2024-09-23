@@ -1,7 +1,7 @@
 from ghalatawi.autocorrector import AutoCorrector
 autoco = AutoCorrector()
 
-input_file_path = "LM_test.txt"
+input_file_path = "output/المقامر رواية لـ دوستويفسكي_PDF/66__المقامر رواية لـ دوستويفسكي.txt"
 
 with open(input_file_path, 'r', encoding='utf-8') as input_file:
     sentences = input_file.readlines()
@@ -9,7 +9,7 @@ with open(input_file_path, 'r', encoding='utf-8') as input_file:
 
 for sentence in sentences:
     corrected_sentences = autoco.spell(sentence)
-    corrected_sentences = autoco.adjust_typo(sentence)
+    corrected_sentences = autoco.adjust_typo(corrected_sentences)
 
 
     output_file_path = "Corrector_text.txt"
