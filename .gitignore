@@ -1,10 +1,3 @@
 
-.env
-/.vscode
-*.pyc
-*.TXT
-*.pdf
-/poppler-21.11.0
-/poppler-24.07.0
-tempCodeRunnerFile.py
+formatting.py
 /venv
