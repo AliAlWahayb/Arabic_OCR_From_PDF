@@ -3,3 +3,6 @@ formatting.py
 /venv
 /output
 /output
+.env
+/__pycache__
+/PDF
