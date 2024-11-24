@@ -1,0 +1,3 @@
+pylibtashkeel @ file://./pylibtashkeel/pylibtashkeel-1.5.0-cp37-abi3-win_amd64.whl
+google-cloud-documentai
+PyPDF2
